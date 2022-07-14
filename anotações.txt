@@ -1,0 +1,48 @@
+https://www.udemy.com/course/spa-com-vue-js/learn/lecture/9050544#overview
+
+1-Ferramentas utilizadas
+	HTML
+	CSS
+	Node 8.9.4 (que já instala o NPM)
+	vue.js no front-end 
+
+
+2-Instalando o Vue CLI
+	vue CLI é a ferramenta de linhas de comando do vue.js
+		npm install -g vue-cli	
+			instalado o vue 2.9.6 
+
+
+3-Criando o Projeto
+	vue init webpack social (webpack é o nome padrão do tipo do projeto / social é o nome dado ao projeto)
+		instala o pacote padrão da aplicação vue, com pasta de components, router etc...
+		em seguida roda com npm run dev e entra no localhost indicado no cmd 
+
+
+4-Código Fonte das Aulas
+	ok
+
+
+5-Diretórios do Projeto
+	explicação dos diretórios 
+	apagado helloworld
+	criado a página home e configurada sua rota 
+
+
+6-Exemplo com Script Externo
+	explicado que, inserindo links CSS ou script em static/index, as inserções ficam globais no projeto 
+
+
+7-Código de Produção
+	utilizando o npm run build , para compilar o projeto, gerando a pasta dist (distribuição)
+		para envio do código, sempre se envia a pasta dist (distribuição) e testa acessando via cmd e 
+			usando um servidor local; php -S localhost:8000
+		na pasta dist, os arquivos estarão todos minificados 
+		
+
+
+	
+
+
+		
+	
