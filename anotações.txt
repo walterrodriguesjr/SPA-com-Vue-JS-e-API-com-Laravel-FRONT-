@@ -40,6 +40,90 @@ https://www.udemy.com/course/spa-com-vue-js/learn/lecture/9050544#overview
 		na pasta dist, os arquivos estarão todos minificados 
 		
 
+8-Configurando o Materialize
+	instalado o materialize com seus arquivos css e js, bem como o jquery 
+
+
+9- Configurando com AdminLTE
+	implementado o template do AdminLTE com as bibliotecas necessárias na pasta 'static'
+
+
+10-Componente NavBar
+	implementando o NavBar.vue, nele foi explicado como configurar e exportar para o App.vue 
+		foi também explicado o uso de bind ":" com 'props' antes da class ou entre {{}}, podendo customizar 
+			o componente
+
+	
+11-Rodapé
+	implementando o FooterVue.vue, nele foi explicado como configurar e exportar para o App.vue 
+		foi também explicado o uso de bind ":" com 'props' antes da class ou entre {{}}, podendo customizar 
+			o componente
+
+
+12-Sistema de Grid
+	implementando o GridVue.vue, nele foi explicado como configurar e exportar para o App.vue 
+		foi também explicado o uso de bind ":" com 'props' antes da class ou entre {{}}, podendo customizar 
+			o componente. O sistema de grid do materialize é semelhante ao do bootstrap, mudando apenas
+				a semântica 
+
+
+13-Preparando o Menu Lateral
+	implementando o CardMenuVue.vue, nele foi explicado como configurar e exportar para o App.vue 
+		foi também explicado o uso de bind ":" com 'props' antes da class ou entre {{}}, podendo customizar 
+			o componente. O sistema de grid do materialize é semelhante ao do bootstrap, mudando apenas
+				a semântica 
+
+
+14-Cartão de Conteúdo - Parte 1
+	implementando o CardConteudoVue.vue, nele foi explicado como configurar e exportar para o App.vue 
+		foi também explicado o uso de bind ":" com 'props' antes da class ou entre {{}}, podendo customizar 
+			o componente. O sistema de grid do materialize é semelhante ao do bootstrap, mudando apenas
+				a semântica 
+
+
+15-Cartão de Conteúdo - Parte 2
+	complementado a primeira aula, deixando os props do componente dinâmico 
+
+
+16-Componente de detalhe do conteúdo
+	implementando o CardDetalheVue.vue, nele foi explicado como configurar e exportar para o App.vue 
+		foi também explicado o uso de bind ":" com 'props' antes da class ou entre {{}}, podendo customizar 
+			o componente. O sistema de grid do materialize é semelhante ao do bootstrap, mudando apenas
+				a semântica 
+
+
+17- Campo para Publicar Conteúdos
+	criado o input e o button de adicionar publicação em Home.vue, feito as configurações de grid 
+
+
+18-Componente de Publicar Conteúdos
+	o campo de inserir publicação foi transformado em componente, chamado PublicarConteudoVue, foi 
+		feito a lógica para que, o botão de publicar só apareça quando o input já não esteja vazio 
+
+
+19-Sistema de Templates
+	explicado sobre o ssitema de API que será usado e sobre o sistema de login via token 
+	aplicado o sistema de templates incluindo o login 
+
+
+20-Organizando com Slots
+	foi mostrado a facilidade de trabalhar com slots em vez de ficar refazendo código igual 
+	os slots permitem usar names para serem identificados 
+
+
+21-Otimizando o NavBar e links de Navegação
+	feito uso de template com o NavBar, bem como as otilizações nas url para que fique em SPA, um a '#'
+
+
+22-Url Amigáveis no Vue JS 
+	sem aparecer o '#' na url e ficar feio 
+	usa o mode: 'history', no sistema de rotas
+
+
+
+
+
+
 
 	
 
