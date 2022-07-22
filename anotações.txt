@@ -120,6 +120,15 @@ https://www.udemy.com/course/spa-com-vue-js/learn/lecture/9050544#overview
 	usa o mode: 'history', no sistema de rotas
 
 
+23-Formulário de Login e Cadastro
+	contruído o from de cadastro de novo usuário.
+	feito a lógica para acessar este formulário 
+
+
+24-Url Amigável para Login e Cadastro
+	ta com erro
+
+
 
 
 

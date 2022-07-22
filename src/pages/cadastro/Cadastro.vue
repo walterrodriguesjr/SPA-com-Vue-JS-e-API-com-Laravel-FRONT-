@@ -7,16 +7,17 @@
       </span>
       
       <span slot="principal">
-        
-        <h2>Login</h2>  
+     
+          <h2>Cadastro</h2>  
 
+          <input type="text" placeholder="Nome" value="">
           <input type="text" placeholder="E-mail" value="">
           <input type="password" placeholder="Senha" value="">
-          <button class="btn">Entrar</button>
-          <button class="btn orange">Cadastre-se</button>
-          <router-link class="btn-orange" to="/login">Cadastre-se</router-link>
-
-      </span>
+          <input type="password" placeholder="COnfirme sua senha" value="">
+          <button class="btn">Enviar</button>
+          <button class="btn orange">Já tenho conta</button>
+    
+        </span>
 
     </LoginTemplate>
 
@@ -26,12 +27,12 @@
 import LoginTemplate from "@/templates/LoginTemplate";
 
 export default {
-  name: "Login",
+  name: "Cadastro",
   data() {
     
     return {
-     
-    }
+      
+    };
   },
   components: {
     LoginTemplate
