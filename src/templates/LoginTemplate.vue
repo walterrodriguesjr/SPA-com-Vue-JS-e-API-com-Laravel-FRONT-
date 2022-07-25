@@ -3,7 +3,10 @@
     <header>
        <NavBar cor="green darken-1" logo="Social" url="/">
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/login">Entrar</router-link></li>
+        <li v-if="!usuario"><router-link to="/login">Entrar</router-link></li>
+        <li v-if="!usuario"><router-link to="/cadastro">Cadastre-se</router-link></li>
+        <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
+        <li v-if="usuario"><a v-on:click="sair()">Sair</a></li>
       </NavBar>
     </header>
 
@@ -43,21 +46,41 @@ import NavBar from "@/components/layouts/NavBar";
 import FooterVue from "@/components/layouts/FooterVue";
 import GridVue from "@/components/layouts/GridVue";
 import CardMenuVue from "@/components/layouts/CardMenuVue";
-import CardConteudoVue from "@/components/social/CardConteudoVue";
+
 
 
 
 export default {
   name: "LoginTemplate",
+  data(){
+    return {
+      usuario: false
+    }
+  },
   components: {
     NavBar,
     FooterVue,
     GridVue,
     CardMenuVue,
-    CardConteudoVue
-
+    
   },
-};
+  created() {
+    console.log('created()');
+    let usuarioAux = sessionStorage.getItem('usuario');
+    if(usuarioAux){
+      this.usuario = JSON.parse(usuarioAux);
+      /* se já estiver logado, não vai vara tela de login */
+      this.$router.push('/');
+    }
+  },
+  /* limpa a sessão do storage e desloga o usuário */
+  methods: {
+    sair(){
+      sessionStorage.clear();
+      this.usuario = false;
+    }
+  },
+}
 </script>
 
 <style>

@@ -6,16 +6,18 @@
         <img src="https://www.mazag.com.br/wp-content/uploads/2020/09/gerenciamento-de-redes-sociais-1024x663.jpg" class="responsive-img">
       </span>
       
-      <span slot="principal">
+
+          <span slot="principal">
      
           <h2>Cadastro</h2>  
 
           <input type="text" placeholder="Nome" value="">
           <input type="text" placeholder="E-mail" value="">
           <input type="password" placeholder="Senha" value="">
-          <input type="password" placeholder="COnfirme sua senha" value="">
+          <input type="password" placeholder="Confirme sua senha" value="">
           <button class="btn">Enviar</button>
-          <button class="btn orange">Já tenho conta</button>
+          <router-link class="btn orange" to="/login">Já tenho conta</router-link>
+ 
     
         </span>
 
@@ -31,7 +33,7 @@ export default {
   data() {
     
     return {
-      
+   
     };
   },
   components: {
