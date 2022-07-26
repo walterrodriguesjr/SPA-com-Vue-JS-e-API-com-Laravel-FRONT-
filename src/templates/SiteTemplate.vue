@@ -2,7 +2,8 @@
   <span>
     <header>
       <NavBar cor="green darken-1" logo="Social" url="/">
-         <li v-if="!usuario"><router-link to="/login">Entrar</router-link></li>
+        <li><router-link to="/">Home</router-link></li> 
+        <li v-if="!usuario"><router-link to="/login">Entrar</router-link></li>
         <li v-if="!usuario"><router-link to="/cadastro">Cadastre-se</router-link></li>
         <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
         <li v-if="usuario"><a v-on:click="sair()">Sair</a></li>
@@ -66,6 +67,9 @@ export default {
     let usuarioAux = sessionStorage.getItem('usuario');
     if(usuarioAux){
       this.usuario = JSON.parse(usuarioAux);
+    }else{
+      /* usuario não acessa a home, caso não esteja logado */
+      this.$router.push('/login');
     }
   },
   /* limpa a sessão do storage e desloga o usuário */
@@ -73,6 +77,8 @@ export default {
     sair(){
       sessionStorage.clear();
       this.usuario = false;
+      /* ao clicar em sair, usuário é direcionado para tela de login */
+      this.$router.push('/login');
     }
   },
 };

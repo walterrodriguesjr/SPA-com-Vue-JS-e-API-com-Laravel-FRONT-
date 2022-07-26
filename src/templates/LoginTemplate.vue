@@ -2,7 +2,6 @@
   <span>
     <header>
        <NavBar cor="green darken-1" logo="Social" url="/">
-        <li><router-link to="/">Home</router-link></li>
         <li v-if="!usuario"><router-link to="/login">Entrar</router-link></li>
         <li v-if="!usuario"><router-link to="/cadastro">Cadastre-se</router-link></li>
         <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>

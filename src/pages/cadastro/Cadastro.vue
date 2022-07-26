@@ -11,11 +11,11 @@
      
           <h2>Cadastro</h2>  
 
-          <input type="text" placeholder="Nome" value="">
-          <input type="text" placeholder="E-mail" value="">
-          <input type="password" placeholder="Senha" value="">
-          <input type="password" placeholder="Confirme sua senha" value="">
-          <button class="btn">Enviar</button>
+          <input type="text" placeholder="Nome" v-model="name">
+          <input type="text" placeholder="E-mail" v-model="email">
+          <input type="password" placeholder="Senha" v-model="password">
+          <input type="password" placeholder="Confirme sua senha" v-model="password_confirmation">
+          <button class="btn" v-on:click="cadastro()">Enviar</button>
           <router-link class="btn orange" to="/login">Já tenho conta</router-link>
  
     
@@ -27,21 +27,60 @@
 
 <script>
 import LoginTemplate from "@/templates/LoginTemplate";
-
+import axios from "axios";
 export default {
   name: "Cadastro",
   data() {
-    
     return {
-   
-    };
+    name:'',  
+    email:'',
+    password:'',
+    password_confirmation:''
+    }
   },
   components: {
     LoginTemplate
-   
-
   },
-  
+  methods: {
+    cadastro(){
+      axios.post('http://127.0.0.1:8000/api/cadastro', {
+				name: this.name,
+				email: this.email,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+			})
+				.then(response => {
+          console.log(response);
+          if (response.data.token) {
+            /* cadastro realizado com sucesso */
+            console.log('Cadastro realizado com sucesso!');
+            /* converte os dados retornados do usuário para texto */
+            sessionStorage.setItem('usuario', JSON.stringify(response.data));
+            /* direciona o usuário para a Home */
+            this.$router.push('/');
+          }else if(response.data.status == false){
+            /* Erro no cadastro! Tente novamente mais tarde! */
+            console.log('Erro no cadastro. Tente novamente mais tarde!');
+            alert('Erro no cadastro! Tente novamente mais tarde!');
+
+          }else{
+            /* erros de validação */
+            console.log('Erros de validação');
+            let erros = '';
+            /* cria um loop que lista os erros de validação */
+            for(let erro of Object.values(response.data)) {
+              erros += erro +" ";
+            }
+            alert(erros);
+          }
+        })
+        /* erro caso o servidor esteja fora do ar */
+				.catch(e => {
+				console.log(e)
+        alert("Erro! Tente novamente mais tarde!");
+			})
+    }
+  },
 };
 
 </script>
