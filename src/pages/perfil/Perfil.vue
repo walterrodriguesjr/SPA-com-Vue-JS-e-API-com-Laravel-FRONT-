@@ -3,7 +3,7 @@
     <siteTemplate>
 
       <span slot="menuesquerdo">
-        <img src="https://www.mazag.com.br/wp-content/uploads/2020/09/gerenciamento-de-redes-sociais-1024x663.jpg" class="responsive-img">
+        <img :src="usuario.imagem" class="responsive-img">
       </span>
       
 
@@ -16,8 +16,8 @@
 
           <div class="file-field input-field">
             <div class="btn">
-             <span>File</span>
-              <input type="file">
+             <span>Imagem</span>
+              <input type="file" v-on:change="salvaImagem">
          </div>
          <div class="file-path-wrapper">
            <input class="file-path validate" type="text">
@@ -46,10 +46,12 @@ export default {
     name:'',  
     email:'',
     password:'',
-    password_confirmation:''
+    password_confirmation:'',
+    imagem:''
     }
   },
   created() {
+    /* método que verifica se ousuário está logado, e pega os dados deste usuário */
     let usuarioAux = sessionStorage.getItem('usuario');
     if(usuarioAux){
       this.usuario = JSON.parse(usuarioAux);
@@ -62,21 +64,42 @@ export default {
     SiteTemplate
   },
   methods: {
-    /* envia para o back-end via put */
+    /* método de capturar imagem */
+    salvaImagem(e){
+      let arquivo = e.target.files || e.dataTransfer.files;
+      if(!arquivo.length){
+        return;
+      }
+      let reader = new FileReader();
+      reader.onloadend = (e) => {
+      this.imagem = e.target.result;
+      };
+      reader.readAsDataURL(arquivo[0]);
+    },
+    /* envia dados do usuário para o back-end via put */
     perfil(){
       axios.put('http://127.0.0.1:8000/api/perfil', {
 				name: this.name,
 				email: this.email,
+        imagem:this.imagem,
         password: this.password,
         password_confirmation: this.password_confirmation,
 			},{"headers":{"authorization":"Bearer "+this.usuario.token}})
 				.then(response => {
-          console.log(response);
-    
-         
+          if(response.data.token){
             console.log(response.data);
-
-        })
+            this.usuario = response.data;
+            sessionStorage.setItem('usuario', JSON.stringify(this.usuario));
+            alert("Perfil atualizado com sucesso!")
+          }else{
+              console.log("Erro de validação");
+              let erros = '';
+              for(let erro of Object.values(response.data)){
+                erros += erro +"";
+              }
+              alert(erros);
+            }
+          })
         /* erro caso o servidor esteja fora do ar */
 				.catch(e => {
 				console.log(e)

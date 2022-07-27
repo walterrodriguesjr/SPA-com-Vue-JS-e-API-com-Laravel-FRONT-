@@ -4,16 +4,16 @@
       <div class="row valign-wrapper">
         <GridVue tamanho="4">
           <img
-            src="https://materializecss.com/images/yuna.jpg"
-            alt=""
+            :src="usuario.imagem"
+            :alt="usuario.name"
             class="circle responsive-img"
           />
           <!-- notice the "circle" class -->
         </GridVue>
         <GridVue tamanho="8">
           <span class="black-text">
-            <h5>Maria</h5>
-            Add the "circle" class to it to make it appear circular.
+            <h5>{{usuario.name}}</h5>
+            
           </span>
         </GridVue>
       </div>
@@ -47,7 +47,16 @@ import PublicarConteudoVue from "@/components/social/PublicarConteudoVue";
 export default {
   name: "Home",
   data() {
-    return {};
+    return {
+    usuario: false
+    };
+  },
+  created() {
+    /* método que verifica se ousuário está logado, e pega os dados deste usuário */
+    let usuarioAux = sessionStorage.getItem('usuario');
+    if(usuarioAux){
+      this.usuario = JSON.parse(usuarioAux);
+    }
   },
   components: {
     SiteTemplate,

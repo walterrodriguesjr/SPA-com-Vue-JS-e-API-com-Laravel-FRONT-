@@ -17,6 +17,12 @@
             <CardMenuVue>
               <slot name="menuesquerdo" />
             </CardMenuVue>
+            <CardMenuVue>
+              <h3>Amigos</h3>
+              <li>Renan</li>
+              <li>Pedro</li>
+              <li>João</li>
+            </CardMenuVue>
           </GridVue>
           <GridVue tamanho="8">
             <slot name="principal" />
