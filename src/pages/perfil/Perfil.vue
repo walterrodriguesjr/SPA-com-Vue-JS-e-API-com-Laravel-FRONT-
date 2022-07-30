@@ -37,7 +37,6 @@
 
 <script>
 import SiteTemplate from "@/templates/SiteTemplate";
-import axios from "axios";
 export default {
   name: "Perfil",
   data() {
@@ -78,7 +77,7 @@ export default {
     },
     /* envia dados do usuário para o back-end via put */
     perfil(){
-      axios.put('http://127.0.0.1:8000/api/perfil', {
+      this.$http.put(this.$urlAPI+`perfil`, {
 				name: this.name,
 				email: this.email,
         imagem:this.imagem,
@@ -86,15 +85,15 @@ export default {
         password_confirmation: this.password_confirmation,
 			},{"headers":{"authorization":"Bearer "+this.usuario.token}})
 				.then(response => {
-          if(response.data.token){
-            console.log(response.data);
-            this.usuario = response.data;
+          if(response.data.status){
+            /* console.log(response.data); */
+            this.usuario = response.data.usuario;
             sessionStorage.setItem('usuario', JSON.stringify(this.usuario));
             alert("Perfil atualizado com sucesso!")
-          }else{
-              console.log("Erro de validação");
+          }else if (response.data.status == false && response.data.validacao){
+              /* console.log("Erro de validação"); */
               let erros = '';
-              for(let erro of Object.values(response.data)){
+              for(let erro of Object.values(response.data.erros)){
                 erros += erro +"";
               }
               alert(erros);

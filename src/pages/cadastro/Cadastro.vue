@@ -27,7 +27,6 @@
 
 <script>
 import LoginTemplate from "@/templates/LoginTemplate";
-import axios from "axios";
 export default {
   name: "Cadastro",
   data() {
@@ -43,7 +42,7 @@ export default {
   },
   methods: {
     cadastro(){
-      axios.post('http://127.0.0.1:8000/api/cadastro', {
+      this.$http.post(this.$urlAPI+`cadastro`, {
 				name: this.name,
 				email: this.email,
         password: this.password,
@@ -51,27 +50,27 @@ export default {
 			})
 				.then(response => {
           console.log(response);
-          if (response.data.token) {
+          if (response.data.status) {
             /* cadastro realizado com sucesso */
             console.log('Cadastro realizado com sucesso!');
             /* converte os dados retornados do usuário para texto */
-            sessionStorage.setItem('usuario', JSON.stringify(response.data));
+            sessionStorage.setItem('usuario', JSON.stringify(response.data.usuario));
             /* direciona o usuário para a Home */
             this.$router.push('/');
-          }else if(response.data.status == false){
-            /* Erro no cadastro! Tente novamente mais tarde! */
-            console.log('Erro no cadastro. Tente novamente mais tarde!');
-            alert('Erro no cadastro! Tente novamente mais tarde!');
-
-          }else{
-            /* erros de validação */
+          }else if(response.data.status == false && response.data.validacao){
+             /* erros de validação */
             console.log('Erros de validação');
             let erros = '';
             /* cria um loop que lista os erros de validação */
-            for(let erro of Object.values(response.data)) {
+            for(let erro of Object.values(response.data.erros)) {
               erros += erro +" ";
             }
             alert(erros);
+          }else{
+            /* Erro no cadastro! Tente novamente mais tarde! */
+            console.log('Erro no cadastro. Tente novamente mais tarde!');
+            alert('Erro no cadastro! Tente novamente mais tarde!');
+           
           }
         })
         /* erro caso o servidor esteja fora do ar */
